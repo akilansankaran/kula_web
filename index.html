@@ -48,8 +48,6 @@
           <div class="sc-outer-ring"></div>
           <!-- Fill ripple animation -->
           <div class="sc-fill"></div>
-          <!-- Center core -->
-          <div class="sc-core"></div>
           <!-- Satellite orbs -->
           <div class="sc-orb orb-a">
             <div class="orb-glow"></div>
@@ -69,9 +67,20 @@
   <section class="problem">
     <div class="container">
       <div class="problem-inner fade-up">
-        <div class="problem-stat-wrap">
-          <p class="problem-stat">60–80</p>
-          <span class="problem-stat-label">hours a week</span>
+        <div class="problem-icon-wrap">
+          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" class="problem-icon">
+            <!-- Outer time ring -->
+            <circle cx="40" cy="40" r="36" stroke="currentColor" stroke-width="0.8" opacity="0.12"/>
+            <!-- Person 1: available, top-right -->
+            <circle cx="58" cy="21" r="9" stroke="#5BB5A5" stroke-width="1.4" fill="none"/>
+            <circle cx="58" cy="21" r="2.8" fill="#5BB5A5"/>
+            <!-- Person 2: unavailable, bottom-left -->
+            <circle cx="22" cy="59" r="9" stroke="#E8906A" stroke-width="1.4" fill="none" opacity="0.45"/>
+            <!-- Dots showing the gap -->
+            <circle cx="36" cy="36" r="1.4" fill="currentColor" opacity="0.2"/>
+            <circle cx="40" cy="40" r="1.4" fill="currentColor" opacity="0.2"/>
+            <circle cx="44" cy="44" r="1.4" fill="currentColor" opacity="0.2"/>
+          </svg>
         </div>
         <div class="problem-body">
           <p class="problem-lead">Could you spend more time with your loved ones during the work day?</p>
@@ -107,7 +116,7 @@
         </div>
         <div class="state-card state-card-wide">
           <div class="state-circle sc-auto"></div>
-          <h3>Always accurate, automatically.</h3>
+          <h3>Kula knows when you are available.</h3>
           <p>Kula connects to your calendar. The moment a meeting or call is scheduled, your status switches to Unavailable without a single tap. The moment it ends, you're Available again. No maintenance. No thinking about it.</p>
         </div>
       </div>
@@ -199,7 +208,6 @@
             </svg>
           </div>
           <h4>Phone</h4>
-          <p>An ambient layer over your homescreen. Always visible, never intrusive.</p>
         </div>
 
         <!-- LAPTOP -->
@@ -218,7 +226,6 @@
             </svg>
           </div>
           <h4>Laptop</h4>
-          <p>Lives quietly in your menu bar or as a desktop widget during your workday.</p>
         </div>
 
         <!-- BRACELET -->
@@ -241,7 +248,6 @@
             </svg>
           </div>
           <h4>Bracelet</h4>
-          <p>A warm glow on your wrist. Precision-designed to be as beautiful as it is useful.</p>
         </div>
 
         <!-- DESK LAMP -->
@@ -268,7 +274,6 @@
             </svg>
           </div>
           <h4>Desk lamp</h4>
-          <p>Your workspace, softly lit by the presence of the people who love you.</p>
         </div>
 
       </div>
@@ -323,29 +328,18 @@
         <span class="section-label">Our team</span>
         <h2>Built by people who needed it.</h2>
       </div>
-      <div class="team-grid fade-up">
-        <div class="team-card">
+      <div class="team-anon fade-up">
+        <div class="team-anon-avatars">
           <div class="team-avatar">
             <span>AS</span>
             <div class="avatar-orb" style="--pc:#5BB5A5;"></div>
           </div>
-          <div class="team-info">
-            <h4>Akilan Sankaran</h4>
-            <p class="team-role">Co-founder</p>
-            <p class="team-bio">Harvard University. Met Aaryan at the Research Science Institute, a summer programme for exceptional researchers, where the idea for Kula first took shape.</p>
-          </div>
-        </div>
-        <div class="team-card">
           <div class="team-avatar">
             <span>AS</span>
             <div class="avatar-orb" style="--pc:#E8906A;"></div>
           </div>
-          <div class="team-info">
-            <h4>Aaryan Singh</h4>
-            <p class="team-role">Co-founder</p>
-            <p class="team-bio">Harvard University. Met Akilan at the Research Science Institute. Both understood the cost of distance not from indifference, but from a life running at full speed.</p>
-          </div>
         </div>
+        <p class="team-anon-text">Two Harvard students who met at the Research Science Institute summer camp.</p>
       </div>
     </div>
   </section>
