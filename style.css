@@ -126,15 +126,44 @@ nav.scrolled {
   align-items: center;
   justify-content: space-between;
 }
+.logo-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 .logo {
   font-family: var(--font-display);
-  font-size: 2rem;
+  font-size: 2.6rem;
   font-weight: 400;
   color: var(--text);
   letter-spacing: 0.1em;
   text-decoration: none;
   line-height: 1;
 }
+.logo-states {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-top: 4px;
+}
+.ls {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  position: relative;
+}
+.ls-available { border: 1px solid var(--p1); }
+.ls-available::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  width: 3px; height: 3px;
+  border-radius: 50%;
+  background: var(--p1);
+}
+.ls-unavailable { border: 1px solid var(--p3); }
+.ls-pulse { background: var(--p2); }
 .nav-links {
   display: flex;
   gap: 36px;
@@ -242,7 +271,7 @@ nav.scrolled {
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 50%;
-  border: 1px solid rgba(201, 169, 110, 0.32);
+  border: 12px solid rgba(201, 169, 110, 0.28);
 }
 
 /* Fill ripple — grows from centre, fills the ring, flashes */
@@ -269,10 +298,10 @@ nav.scrolled {
 .sc-core {
   position: absolute;
   top: 50%; left: 50%;
-  width: 11px; height: 11px;
+  width: 56px; height: 56px;
   border-radius: 50%;
   background: var(--accent);
-  box-shadow: 0 0 14px var(--accent-glow-s), 0 0 40px var(--accent-glow);
+  box-shadow: 0 0 28px var(--accent-glow-s), 0 0 60px var(--accent-glow);
   animation: core-breathe 3.5s ease-in-out infinite;
   z-index: 3;
 }
@@ -583,15 +612,6 @@ nav.scrolled {
   border-radius: 50%;
   background: var(--pc);
 }
-.pp-available::before {
-  content: '';
-  position: absolute;
-  inset: -7px;
-  border-radius: 50%;
-  border: 1px solid var(--pc);
-  opacity: 0;
-  animation: ring-expand 2.5s ease-out infinite;
-}
 .pp-pulse {
   background: var(--pc);
   animation: simple-breathe 2s ease-in-out infinite;
@@ -836,12 +856,14 @@ nav.scrolled {
   animation-delay: 1.5s;
 }
 .wl-core {
+  position: absolute;
+  top: 50%; left: 50%;
   width: 14px; height: 14px;
   border-radius: 50%;
   background: var(--accent);
   box-shadow: 0 0 18px var(--accent-glow-s), 0 0 40px var(--accent-glow);
   animation: core-breathe 3s ease-in-out infinite;
-  position: relative; z-index: 1;
+  z-index: 1;
 }
 
 .waitlist-text h2 {
