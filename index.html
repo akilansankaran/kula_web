@@ -78,19 +78,19 @@
     <div class="container">
       <div class="section-header fade-up">
         <span class="section-label">What is Kula?</span>
-        <h2>A signal. Omnipresence. Prioritising your loved ones.</h2>
+        <h2>A signal. Omnipresent. Prioritising your loved ones.</h2>
         <p class="section-lead">Three simple states. No words required. Your circle, your sense of time.</p>
       </div>
       <div class="states-grid fade-up">
         <div class="state-card">
-          <div class="state-circle sc-available"></div>
-          <h3>Available</h3>
-          <p>A ring with a central dot. You're free; present; and open to connection. We'll find you the time to connect.</p>
-        </div>
-        <div class="state-card">
           <div class="state-circle sc-unavailable"></div>
           <h3>Unavailable</h3>
           <p>An empty ring. You're in focus mode. No interruption, no guilt.</p>
+        </div>
+        <div class="state-card">
+          <div class="state-circle sc-available"></div>
+          <h3>Available</h3>
+          <p>A ring with a central dot. You're free, present, and open to connection. We'll find you the time to connect.</p>
         </div>
         <div class="state-card">
           <div class="state-circle sc-pulse"></div>
@@ -99,10 +99,45 @@
         </div>
         <div class="state-card state-card-wide">
           <div class="state-wide-left">
-            <div class="state-circle sc-auto"></div>
+            <div class="kula-knows-art">
+              <!-- Calendar -->
+              <svg class="kk-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="5" y="9" width="30" height="26" rx="3" stroke="currentColor" stroke-width="1.4"/>
+                <line x1="5" y1="16" x2="35" y2="16" stroke="currentColor" stroke-width="1.4"/>
+                <line x1="13" y1="5" x2="13" y2="12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+                <line x1="27" y1="5" x2="27" y2="12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+                <circle cx="14" cy="24" r="1.5" fill="currentColor"/>
+                <circle cx="20" cy="24" r="1.5" fill="currentColor"/>
+                <circle cx="26" cy="24" r="1.5" fill="currentColor"/>
+              </svg>
+              <span class="kk-plus">+</span>
+              <!-- Phone -->
+              <svg class="kk-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="11" y="4" width="18" height="32" rx="4" stroke="currentColor" stroke-width="1.4"/>
+                <line x1="17" y1="8" x2="23" y2="8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+                <circle cx="20" cy="32" r="1.5" fill="currentColor"/>
+              </svg>
+              <span class="kk-plus">+</span>
+              <!-- Tasks -->
+              <svg class="kk-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line x1="16" y1="12" x2="32" y2="12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+                <line x1="16" y1="20" x2="32" y2="20" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+                <line x1="16" y1="28" x2="26" y2="28" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+                <polyline points="8,11 10.5,14 14,9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                <polyline points="8,19 10.5,22 14,17" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="10" cy="28" r="2" stroke="currentColor" stroke-width="1.4"/>
+              </svg>
+              <span class="kk-equals">=</span>
+              <!-- Eye made from available ring -->
+              <div class="kk-eye">
+                <div class="kk-eye-ring">
+                  <div class="kk-eye-dot"></div>
+                </div>
+              </div>
+            </div>
             <h3>Kula knows when you're available.</h3>
           </div>
-          <p>Connected to your calendar, meetings, and tasks: we preserve your privacy.</p>
+          <p>Connected to your calendar, calls, and tasks. The moment you're busy, your status shifts. The moment you're free, it opens. No taps. No thinking about it.</p>
         </div>
       </div>
     </div>
@@ -344,10 +379,18 @@
         <div class="waitlist-text fade-up">
           <h2>Be the first to bring Kula home.</h2>
           <p>Join our waitlist for early access, product updates, and first priority on pre-orders.</p>
-          <form class="wl-form" id="wl-form">
+          <form class="wl-form" id="wl-form" novalidate>
+            <!-- Honeypot: invisible to humans, bots fill it -->
+            <input type="text" name="_hp" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;height:0;" aria-hidden="true">
             <div class="wl-input-group">
-              <input type="email" placeholder="Your email address" required id="wl-email">
-              <button type="submit">Join our waitlist</button>
+              <input type="email" placeholder="Your email address" required id="wl-email" autocomplete="email">
+              <button type="submit" id="wl-submit" disabled>Join our waitlist</button>
+            </div>
+            <!-- CAPTCHA — slides in after email entered -->
+            <div class="wl-captcha" id="wl-captcha">
+              <p class="captcha-prompt">Are you a robot? Tap every <strong>Available</strong> circle to continue.</p>
+              <div class="captcha-circles" id="captcha-circles"></div>
+              <p class="captcha-hint" id="captcha-hint"></p>
             </div>
           </form>
           <p class="wl-success" id="wl-success">You're on the list. We'll be in touch.</p>
@@ -397,13 +440,122 @@
       nav.classList.toggle('scrolled', window.scrollY > 40);
     }, { passive: true });
 
-    // Waitlist form
-    document.getElementById('wl-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      this.style.display = 'none';
-      const s = document.getElementById('wl-success');
-      s.style.display = 'block';
-    });
+    // ── Waitlist CAPTCHA ──────────────────────────────────────────
+    (function () {
+      const emailInput  = document.getElementById('wl-email');
+      const captchaBox  = document.getElementById('wl-captcha');
+      const circlesEl   = document.getElementById('captcha-circles');
+      const hintEl      = document.getElementById('captcha-hint');
+      const submitBtn   = document.getElementById('wl-submit');
+      const form        = document.getElementById('wl-form');
+
+      // Circle types: 'available' | 'unavailable' | 'pulse'
+      const TYPES = ['available', 'unavailable', 'pulse'];
+      let correctIds  = new Set();
+      let selectedIds = new Set();
+      let verified    = false;
+
+      function buildCaptcha() {
+        circlesEl.innerHTML = '';
+        correctIds.clear();
+        selectedIds.clear();
+        hintEl.textContent = '';
+
+        // 6 circles; guarantee at least 2 available, max 3
+        const count = 6;
+        const types = [];
+        const availableCount = 2 + Math.floor(Math.random() * 2); // 2 or 3
+        for (let i = 0; i < availableCount; i++) types.push('available');
+        while (types.length < count) types.push(TYPES[1 + Math.floor(Math.random() * 2)]);
+        // Shuffle
+        for (let i = types.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [types[i], types[j]] = [types[j], types[i]];
+        }
+
+        types.forEach((type, idx) => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = `captcha-circle captcha-${type}`;
+          btn.dataset.id = idx;
+          btn.setAttribute('aria-label', 'Circle ' + (idx + 1));
+          if (type === 'available') {
+            const dot = document.createElement('span');
+            dot.className = 'captcha-inner-dot';
+            btn.appendChild(dot);
+            correctIds.add(String(idx));
+          }
+          if (type === 'pulse') btn.classList.add('captcha-pulse-anim');
+          btn.addEventListener('click', () => onCircleClick(btn, String(idx)));
+          circlesEl.appendChild(btn);
+        });
+      }
+
+      function onCircleClick(btn, id) {
+        if (verified) return;
+        if (selectedIds.has(id)) {
+          selectedIds.delete(id);
+          btn.classList.remove('captcha-selected');
+        } else {
+          selectedIds.add(id);
+          btn.classList.add('captcha-selected');
+        }
+        checkCaptcha();
+      }
+
+      function checkCaptcha() {
+        // Correct when selected set equals correct set exactly
+        const allCorrect = correctIds.size === selectedIds.size &&
+          [...correctIds].every(id => selectedIds.has(id));
+        const anyWrong = [...selectedIds].some(id => !correctIds.has(id));
+
+        if (anyWrong) {
+          hintEl.textContent = 'Not quite — those are not all Available. Try again.';
+          hintEl.style.color = 'rgba(220,100,80,0.85)';
+          setTimeout(() => {
+            selectedIds.clear();
+            circlesEl.querySelectorAll('.captcha-selected').forEach(el => el.classList.remove('captcha-selected'));
+            hintEl.textContent = '';
+          }, 900);
+          return;
+        }
+
+        if (allCorrect) {
+          verified = true;
+          hintEl.textContent = 'Verified. You\'re human.';
+          hintEl.style.color = 'rgba(201,169,110,0.9)';
+          submitBtn.disabled = false;
+          submitBtn.classList.add('btn-ready');
+          circlesEl.querySelectorAll('.captcha-circle').forEach(el => {
+            el.style.pointerEvents = 'none';
+          });
+        }
+      }
+
+      // Show CAPTCHA after valid email typed
+      let captchaShown = false;
+      emailInput.addEventListener('input', () => {
+        if (!captchaShown && emailInput.validity.valid && emailInput.value.includes('@')) {
+          captchaShown = true;
+          buildCaptcha();
+          captchaBox.classList.add('captcha-visible');
+        }
+      });
+
+      // Form submit — check honeypot + verified
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (form.querySelector('input[name="_hp"]').value) return; // bot
+        if (!verified) {
+          hintEl.textContent = 'Please complete the circle check first.';
+          hintEl.style.color = 'rgba(220,100,80,0.85)';
+          return;
+        }
+        if (!emailInput.validity.valid) { emailInput.reportValidity(); return; }
+        form.style.display = 'none';
+        document.getElementById('wl-success').style.display = 'block';
+      });
+    })();
   </script>
 
 </body>

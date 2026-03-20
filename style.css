@@ -589,6 +589,40 @@ nav.scrolled {
   100% { box-shadow: 0 0 0 0    rgba(201,169,110,0);    opacity: 0; }
 }
 
+/* ---- Kula Knows art ---- */
+.kula-knows-art {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+.kk-icon {
+  width: 32px; height: 32px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+.kk-plus, .kk-equals {
+  color: var(--text-muted);
+  font-size: 1rem;
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+.kk-eye { flex-shrink: 0; }
+.kk-eye-ring {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  border: 1.5px solid var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.kk-eye-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent-glow-s);
+}
+
 /* ---- Auto (Kula knows) ---- */
 .sc-auto {
   border: 1.5px solid var(--text-muted);
@@ -1087,6 +1121,75 @@ nav.scrolled {
   margin-bottom: 14px;
 }
 .wl-note { font-size: 0.75rem; color: var(--text-muted); letter-spacing: 0.03em; }
+
+/* ── CAPTCHA ──────────────────────────────────────────────── */
+.wl-captcha {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.5s ease, opacity 0.4s ease, margin 0.4s ease;
+  margin-top: 0;
+}
+.wl-captcha.captcha-visible {
+  max-height: 200px;
+  opacity: 1;
+  margin-top: 20px;
+}
+.captcha-prompt {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+  letter-spacing: 0.02em;
+}
+.captcha-prompt strong { color: var(--accent); font-weight: 500; }
+.captcha-circles {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+.captcha-circle {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  flex-shrink: 0;
+}
+.captcha-circle:hover { transform: scale(1.1); }
+.captcha-available { border: 1.5px solid var(--accent) !important; }
+.captcha-inner-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: block;
+}
+.captcha-unavailable { border: 1.5px solid rgba(160,150,138,0.45) !important; }
+.captcha-pulse { background: var(--accent); }
+.captcha-pulse-anim { animation: captcha-pulse-ring 2.4s ease-in-out infinite; }
+@keyframes captcha-pulse-ring {
+  0%,100% { box-shadow: 0 0 0 0 rgba(201,169,110,0.5); }
+  60%     { box-shadow: 0 0 0 8px rgba(201,169,110,0); }
+}
+.captcha-circle.captcha-selected {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  transform: scale(1.12);
+}
+#wl-submit:disabled { opacity: 0.45; cursor: not-allowed; }
+#wl-submit:not(:disabled) { opacity: 1; cursor: pointer; }
+.captcha-hint {
+  font-size: 0.78rem;
+  min-height: 1.2em;
+  transition: color 0.2s;
+  letter-spacing: 0.02em;
+}
 
 /* ============================================================ FOOTER */
 footer {
