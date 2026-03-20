@@ -850,7 +850,7 @@ nav.scrolled {
 }
 .device-card:hover { background: var(--surface-2); }
 .device-icon {
-  width: 80px; height: 110px;
+  width: 130px; height: 170px;
   color: var(--accent);
   perspective: 600px;
   margin: 0 auto;
