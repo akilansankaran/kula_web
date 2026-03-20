@@ -550,7 +550,7 @@
         submitBtn.textContent = 'Joining...';
         try {
           const SUPABASE_URL = 'https://ubokrxsvgcmhbsguifik.supabase.co';
-          const SUPABASE_ANON = 'sb_publishable_64vWhTGOBHzgRGFF6Ce3KQ_FcMxH2WB';
+          const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVib2tyeHN2Z2NtaGJzZ3VpZmlrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwMzE3NjksImV4cCI6MjA4OTYwNzc2OX0.-fdK-ErOayZ5o0WaKKIOmrFWf-w3Anwd2l_4sDV3HB8';
           const res = await fetch(SUPABASE_URL + '/rest/v1/waitlist', {
             method: 'POST',
             headers: {
