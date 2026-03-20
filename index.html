@@ -249,11 +249,19 @@
               <div class="icon-face icon-back">
                 <svg viewBox="0 0 36 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <rect x="2" y="2" width="32" height="60" rx="6" stroke="currentColor" stroke-width="1.4" fill="rgba(201,169,110,0.03)"/>
-                  <rect x="4" y="7" width="16" height="16" rx="4" stroke="currentColor" stroke-width="1" fill="rgba(201,169,110,0.05)"/>
-                  <circle cx="10" cy="13" r="4" stroke="currentColor" stroke-width="0.8" fill="rgba(201,169,110,0.08)"/>
-                  <circle cx="18" cy="13" r="4" stroke="currentColor" stroke-width="0.8" fill="rgba(201,169,110,0.08)"/>
-                  <circle cx="10" cy="22" r="2" stroke="currentColor" stroke-width="0.6" fill="none" opacity="0.3"/>
-                  <circle cx="18" cy="46" r="4" stroke="currentColor" stroke-width="0.6" opacity="0.12"/>
+                  <!-- iPhone-style camera island: triangle of 3 lenses -->
+                  <rect x="5" y="6" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1" fill="rgba(201,169,110,0.06)"/>
+                  <!-- Top-left lens -->
+                  <circle cx="10" cy="11" r="3.2" stroke="currentColor" stroke-width="0.9" fill="rgba(201,169,110,0.1)"/>
+                  <circle cx="10" cy="11" r="1.5" stroke="currentColor" stroke-width="0.6" fill="rgba(0,0,0,0.3)"/>
+                  <!-- Top-right lens -->
+                  <circle cx="18" cy="11" r="3.2" stroke="currentColor" stroke-width="0.9" fill="rgba(201,169,110,0.1)"/>
+                  <circle cx="18" cy="11" r="1.5" stroke="currentColor" stroke-width="0.6" fill="rgba(0,0,0,0.3)"/>
+                  <!-- Bottom-centre lens -->
+                  <circle cx="14" cy="19" r="3.2" stroke="currentColor" stroke-width="0.9" fill="rgba(201,169,110,0.1)"/>
+                  <circle cx="14" cy="19" r="1.5" stroke="currentColor" stroke-width="0.6" fill="rgba(0,0,0,0.3)"/>
+                  <!-- Flash -->
+                  <circle cx="21" cy="8" r="1.2" fill="currentColor" opacity="0.3"/>
                 </svg>
               </div>
             </div>
@@ -299,35 +307,27 @@
             <div class="icon-3d">
               <div class="icon-face icon-front">
                 <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <!-- Wrist (subtle) -->
-                  <ellipse cx="28" cy="34" rx="16" ry="20" stroke="rgba(255,255,255,0.05)" stroke-width="0.5" fill="rgba(255,255,255,0.01)"/>
-                  <!-- Band - top arc (visible face) -->
-                  <path d="M12 30 Q28 10 44 30" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.18"/>
-                  <path d="M12 30 Q28 10 44 30" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
-                  <!-- Band sides fading down -->
-                  <path d="M12 30 Q10 40 14 48" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.28"/>
-                  <path d="M44 30 Q46 40 42 48" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.28"/>
-                  <!-- State circles on top of wrist only -->
-                  <circle cx="17" cy="26" r="3" fill="#5BB5A5" opacity="0.9"/>
-                  <circle cx="28" cy="15" r="3" stroke="#E8906A" stroke-width="1.1" fill="none"/>
-                  <circle cx="28" cy="15" r="1" fill="#E8906A"/>
-                  <circle cx="39" cy="26" r="3" stroke="#C47A9E" stroke-width="1.1" fill="none"/>
-                  <circle cx="39" cy="26" r="1" fill="#C47A9E"/>
+                  <!-- Full bracelet ring -->
+                  <circle cx="28" cy="28" r="22" stroke="currentColor" stroke-width="2.5" fill="none"/>
+                  <!-- 3 lights clustered at top (≈ 1/6 of ring, around 12 o'clock) -->
+                  <!-- Positions on circle r=22, angles -100°, -90°, -80° -->
+                  <!-- -100°: x=28+22*cos(-100°)=28-3.82=24.2, y=28+22*sin(-100°)=28-21.7=6.3 -->
+                  <!-- -90°:  x=28, y=28-22=6 -->
+                  <!-- -80°:  x=28+22*cos(-80°)=28+3.82=31.8, y=6.3 -->
+                  <circle cx="22" cy="7"  r="2.8" fill="#5BB5A5"/>
+                  <circle cx="28" cy="6"  r="2.8" stroke="#E8906A" stroke-width="1.1" fill="none"/>
+                  <circle cx="28" cy="6"  r="0.9" fill="#E8906A"/>
+                  <circle cx="34" cy="7"  r="2.8" stroke="#C47A9E" stroke-width="1.1" fill="none"/>
+                  <circle cx="34" cy="7"  r="0.9" fill="#C47A9E"/>
                 </svg>
               </div>
               <div class="icon-face icon-back">
                 <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <!-- Wrist from behind -->
-                  <ellipse cx="28" cy="34" rx="16" ry="20" stroke="rgba(255,255,255,0.05)" stroke-width="0.5" fill="rgba(255,255,255,0.01)"/>
-                  <!-- Back of band - bottom arc -->
-                  <path d="M12 38 Q28 54 44 38" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.18"/>
-                  <path d="M12 38 Q28 54 44 38" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
-                  <!-- Band sides -->
-                  <path d="M12 30 Q10 34 12 38" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.5"/>
-                  <path d="M44 30 Q46 34 44 38" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.5"/>
-                  <!-- Clasp -->
-                  <rect x="22" y="46" width="12" height="5" rx="2" stroke="currentColor" stroke-width="0.9" fill="rgba(201,169,110,0.07)"/>
-                  <line x1="28" y1="46" x2="28" y2="51" stroke="currentColor" stroke-width="0.7" opacity="0.4"/>
+                  <!-- Same ring, no lights, clasp at bottom -->
+                  <circle cx="28" cy="28" r="22" stroke="currentColor" stroke-width="2.5" fill="none"/>
+                  <!-- Clasp detail at bottom -->
+                  <rect x="23" y="47" width="10" height="4" rx="1.5" stroke="currentColor" stroke-width="0.8" fill="rgba(201,169,110,0.08)"/>
+                  <line x1="28" y1="47" x2="28" y2="51" stroke="currentColor" stroke-width="0.6" opacity="0.35"/>
                 </svg>
               </div>
             </div>
@@ -339,46 +339,28 @@
           <div class="device-icon">
             <div class="icon-3d">
               <div class="icon-face icon-front">
-                <svg viewBox="0 0 48 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <!-- Base -->
-                  <rect x="8" y="50" width="32" height="6" rx="3" stroke="currentColor" stroke-width="1.3" fill="rgba(201,169,110,0.04)"/>
-                  <!-- Stem -->
-                  <line x1="24" y1="50" x2="24" y2="34" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-                  <!-- Elbow -->
-                  <circle cx="24" cy="34" r="2.2" fill="currentColor" opacity="0.45"/>
-                  <!-- Arm -->
-                  <line x1="24" y1="34" x2="36" y2="16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-                  <!-- Head joint -->
-                  <circle cx="36" cy="16" r="1.8" fill="currentColor" opacity="0.45"/>
-                  <!-- Neck to shade -->
-                  <line x1="36" y1="16" x2="30" y2="10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-                  <!-- Shade (cone, open downward) -->
-                  <path d="M20 6 L40 6 L36 16 L24 16 Z" stroke="currentColor" stroke-width="1.3" fill="rgba(201,169,110,0.07)" stroke-linejoin="round"/>
-                  <!-- Bulb glow -->
-                  <circle cx="30" cy="11" r="3" fill="rgba(201,169,110,0.65)"/>
-                  <!-- Status dots on base -->
-                  <circle cx="18" cy="53" r="1.8" fill="#5BB5A5"/>
-                  <circle cx="24" cy="53" r="1.8" fill="#E8906A"/>
-                  <circle cx="30" cy="53" r="1.8" stroke="#8B9EC8" stroke-width="0.9" fill="none"/>
+                <svg viewBox="0 0 48 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <clipPath id="lamp-clip-f">
+                      <rect x="15" y="4" width="18" height="40" rx="9"/>
+                    </clipPath>
+                  </defs>
+                  <rect x="15" y="4" width="18" height="40" rx="9" stroke="currentColor" stroke-width="1.3" fill="rgba(255,255,255,0.02)"/>
+                  <g clip-path="url(#lamp-clip-f)">
+                    <rect x="15" y="11" width="18" height="2" fill="#5BB5A5" opacity="0.85"/>
+                    <rect x="15" y="18" width="18" height="2" fill="#E8906A" opacity="0.85"/>
+                    <rect x="15" y="25" width="18" height="2" fill="#8B9EC8" opacity="0.85"/>
+                    <rect x="15" y="32" width="18" height="2" fill="#C47A9E" opacity="0.85"/>
+                  </g>
+                  <path d="M19 44h10" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                  <path d="M21 44v4M27 44v4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
                 </svg>
               </div>
               <div class="icon-face icon-back">
-                <svg viewBox="0 0 48 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <!-- Base -->
-                  <rect x="8" y="50" width="32" height="6" rx="3" stroke="currentColor" stroke-width="1.3" fill="rgba(201,169,110,0.04)"/>
-                  <!-- Stem -->
-                  <line x1="24" y1="50" x2="24" y2="34" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-                  <circle cx="24" cy="34" r="2.2" fill="currentColor" opacity="0.45"/>
-                  <!-- Arm mirrored -->
-                  <line x1="24" y1="34" x2="12" y2="16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-                  <circle cx="12" cy="16" r="1.8" fill="currentColor" opacity="0.45"/>
-                  <line x1="12" y1="16" x2="18" y2="10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-                  <!-- Shade from behind -->
-                  <path d="M8 6 L28 6 L24 16 L12 16 Z" stroke="currentColor" stroke-width="1.3" fill="rgba(201,169,110,0.04)" stroke-linejoin="round"/>
-                  <!-- Cable detail -->
-                  <path d="M24 50 Q22 42 24 34" stroke="currentColor" stroke-width="0.7" stroke-dasharray="2 2" opacity="0.3"/>
-                  <!-- Ventilation slots on base -->
-                  <line x1="16" y1="53" x2="32" y2="53" stroke="currentColor" stroke-width="0.7" opacity="0.25" stroke-linecap="round"/>
+                <svg viewBox="0 0 48 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="15" y="4" width="18" height="40" rx="9" stroke="currentColor" stroke-width="1.3" fill="rgba(255,255,255,0.02)"/>
+                  <path d="M19 44h10" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                  <path d="M21 44v4M27 44v4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
                 </svg>
               </div>
             </div>
