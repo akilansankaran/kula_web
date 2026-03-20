@@ -279,17 +279,18 @@ nav.scrolled {
   position: absolute;
   width: 284px; height: 284px;
   top: 50%; left: 50%;
+  transform: translate(-50%, -50%) scale(0.04); /* always centred */
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(201,169,110,0.20) 0%, rgba(201,169,110,0.05) 100%);
+  background: radial-gradient(circle, rgba(201,169,110,0.55) 0%, rgba(201,169,110,0.12) 70%, transparent 100%);
   animation: fill-flash 5s ease-in-out infinite;
 }
 @keyframes fill-flash {
   0%   { transform: translate(-50%,-50%) scale(0.04); opacity: 0; }
   8%   { opacity: 1; }
-  50%  { transform: translate(-50%,-50%) scale(1);    opacity: 0.78; }
-  62%  { opacity: 0.95; }
-  70%  { opacity: 0.45; }
-  80%  { opacity: 0.85; }
+  50%  { transform: translate(-50%,-50%) scale(1);    opacity: 0.75; }
+  60%  { transform: translate(-50%,-50%) scale(1);    opacity: 0.75; }
+  63%  { opacity: 1; }   /* sharp flash — same brightness as core dot */
+  66%  { opacity: 0.2; }
   93%  { transform: translate(-50%,-50%) scale(1);    opacity: 0; }
   100% { transform: translate(-50%,-50%) scale(0.04); opacity: 0; }
 }
@@ -360,31 +361,32 @@ nav.scrolled {
 .states-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  overflow: hidden;
+  border-top: 1px solid var(--border);
 }
 .state-card-wide {
   grid-column: 1 / -1;
-  display: flex;
-  align-items: flex-start;
-  gap: 32px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border-top: 1px solid var(--border);
+  align-items: start;
 }
-.state-card-wide .state-circle { flex-shrink: 0; margin-bottom: 0; }
+.state-card-wide .state-circle { flex-shrink: 0; margin-bottom: 20px; }
+.state-wide-left { padding: 52px 48px 52px 0; border-right: 1px solid var(--border); }
+.state-card-wide > p { padding: 52px 0 52px 48px; color: var(--text-muted); font-size: 0.9375rem; line-height: 1.8; align-self: center; }
 .state-card {
-  background: var(--surface);
-  padding: 44px 36px;
-  transition: background 0.3s;
+  padding: 52px 0 52px;
+  padding-right: 48px;
+  border-right: 1px solid var(--border);
 }
-.state-card:hover { background: var(--surface-2); }
+.state-card:last-of-type:not(.state-card-wide) { border-right: none; padding-right: 0; padding-left: 48px; }
+.state-card:nth-child(2) { padding-left: 48px; }
 
 /* State circle visuals */
 .state-circle {
-  width: 32px; height: 32px;
+  width: 44px; height: 44px;
   border-radius: 50%;
-  margin-bottom: 28px;
+  margin-bottom: 36px;
   position: relative;
   flex-shrink: 0;
 }
@@ -396,7 +398,7 @@ nav.scrolled {
   position: absolute;
   top: 50%; left: 50%;
   transform: translate(-50%,-50%);
-  width: 9px; height: 9px;
+  width: 12px; height: 12px;
   border-radius: 50%;
   background: var(--accent);
 }
@@ -437,15 +439,17 @@ nav.scrolled {
 
 .state-card h3 {
   font-family: var(--font-display);
-  font-size: 1.35rem;
-  font-weight: 400;
+  font-size: clamp(1.5rem, 2vw, 2rem);
+  font-weight: 300;
   color: var(--text);
-  margin-bottom: 10px;
+  margin-bottom: 14px;
+  letter-spacing: -0.01em;
 }
 .state-card p {
   color: var(--text-muted);
   font-size: 0.875rem;
-  line-height: 1.75;
+  line-height: 1.8;
+  max-width: 280px;
 }
 
 /* ============================================================ HOW */
@@ -935,8 +939,12 @@ footer {
   .sc-outer-ring { width: 220px; height: 220px; }
   .sc-fill { width: 214px; height: 214px; }
   .states-grid { grid-template-columns: 1fr; }
-  .state-card-wide { flex-direction: column; gap: 20px; }
-  .state-card-wide .state-circle { margin-bottom: 0; }
+  .state-card { border-right: none; border-bottom: 1px solid var(--border); padding: 36px 0; padding-right: 0; padding-left: 0; }
+  .state-card:nth-child(2) { padding-left: 0; }
+  .state-card:last-of-type:not(.state-card-wide) { padding-left: 0; }
+  .state-card-wide { grid-template-columns: 1fr; }
+  .state-wide-left { padding: 36px 0 24px; border-right: none; border-bottom: 1px solid var(--border); }
+  .state-card-wide > p { padding: 24px 0 36px; }
   .how-inner { grid-template-columns: 1fr; gap: 56px; }
   .how-visual { order: -1; }
   .how-text h2 { max-width: 100%; margin-bottom: 36px; }
