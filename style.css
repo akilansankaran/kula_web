@@ -470,7 +470,7 @@ nav.scrolled {
   padding-right: 48px;
   border-right: 1px solid var(--border);
 }
-.state-card:last-of-type:not(.state-card-wide) { border-right: none; padding-right: 0; padding-left: 48px; }
+.state-card:nth-child(3) { border-right: none; padding-right: 0; padding-left: 48px; }
 .state-card:nth-child(2) { padding-left: 48px; }
 
 /* State circle visuals */
