@@ -307,6 +307,44 @@ nav.scrolled {
   z-index: 3;
 }
 
+/* Clock hands — pivot at the centre dot, tick via steps() */
+.sc-clock {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0; height: 0;
+  z-index: 2;
+}
+.sc-hand-hour,
+.sc-hand-minute {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border-radius: 3px 3px 1px 1px;
+  transform-origin: 50% 100%;
+}
+/* Minute hand: long, thin, one tick per second */
+.sc-hand-minute {
+  width: 1.5px;
+  height: 110px;
+  margin-left: -0.75px;
+  background: linear-gradient(to top, rgba(201,169,110,0.90) 0%, rgba(201,169,110,0.25) 100%);
+  box-shadow: 0 0 5px rgba(201,169,110,0.22);
+  animation: tick-minute 60s steps(60, end) infinite;
+  animation-delay: -14s;
+}
+/* Hour hand: stubby, wider, moves once per minute */
+.sc-hand-hour {
+  width: 3px;
+  height: 70px;
+  margin-left: -1.5px;
+  background: linear-gradient(to top, rgba(201,169,110,0.62) 0%, rgba(201,169,110,0.12) 100%);
+  animation: tick-hour 720s steps(60, end) infinite;
+  animation-delay: -84s;
+}
+@keyframes tick-minute { to { transform: rotate(360deg); } }
+@keyframes tick-hour   { to { transform: rotate(360deg); } }
+
 /* Satellite orbs */
 .sc-orb { position: absolute; display: flex; align-items: center; justify-content: center; z-index: 2; }
 .orb-dot {
