@@ -388,7 +388,7 @@
             </div>
             <!-- CAPTCHA — slides in after email entered -->
             <div class="wl-captcha" id="wl-captcha">
-              <p class="captcha-prompt">Are you a robot? Tap every <strong>Available</strong> circle to continue.</p>
+              <p class="captcha-prompt">Are you not a robot? Tap every <strong>Pulse</strong> circle to continue.</p>
               <div class="captcha-circles" id="captcha-circles"></div>
               <p class="captcha-hint" id="captcha-hint"></p>
             </div>
@@ -449,8 +449,7 @@
       const submitBtn   = document.getElementById('wl-submit');
       const form        = document.getElementById('wl-form');
 
-      // Circle types: 'available' | 'unavailable' | 'pulse'
-      const TYPES = ['available', 'unavailable', 'pulse'];
+      // Circle types: 'pulse' (correct) | 'static' (empty ring, wrong)
       let correctIds  = new Set();
       let selectedIds = new Set();
       let verified    = false;
@@ -461,12 +460,12 @@
         selectedIds.clear();
         hintEl.textContent = '';
 
-        // 6 circles; guarantee at least 2 available, max 3
+        // 6 circles: 2 or 3 pulse, rest static empty rings
         const count = 6;
         const types = [];
-        const availableCount = 2 + Math.floor(Math.random() * 2); // 2 or 3
-        for (let i = 0; i < availableCount; i++) types.push('available');
-        while (types.length < count) types.push(TYPES[1 + Math.floor(Math.random() * 2)]);
+        const pulseCount = 2 + Math.floor(Math.random() * 2); // 2 or 3
+        for (let i = 0; i < pulseCount; i++) types.push('pulse');
+        while (types.length < count) types.push('static');
         // Shuffle
         for (let i = types.length - 1; i > 0; i--) {
           const j = Math.floor(Math.random() * (i + 1));
@@ -479,13 +478,7 @@
           btn.className = `captcha-circle captcha-${type}`;
           btn.dataset.id = idx;
           btn.setAttribute('aria-label', 'Circle ' + (idx + 1));
-          if (type === 'available') {
-            const dot = document.createElement('span');
-            dot.className = 'captcha-inner-dot';
-            btn.appendChild(dot);
-            correctIds.add(String(idx));
-          }
-          if (type === 'pulse') btn.classList.add('captcha-pulse-anim');
+          if (type === 'pulse') correctIds.add(String(idx));
           btn.addEventListener('click', () => onCircleClick(btn, String(idx)));
           circlesEl.appendChild(btn);
         });

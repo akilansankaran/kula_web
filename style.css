@@ -1163,20 +1163,26 @@ nav.scrolled {
   flex-shrink: 0;
 }
 .captcha-circle:hover { transform: scale(1.1); }
-.captcha-available { border: 1.5px solid var(--accent) !important; }
-.captcha-inner-dot {
-  width: 10px; height: 10px;
-  border-radius: 50%;
+
+/* Static empty ring — wrong answer */
+.captcha-static {
+  border: 1.5px solid rgba(160,150,138,0.38) !important;
+}
+
+/* Pulse — correct answer, strong glow */
+.captcha-pulse {
   background: var(--accent);
-  display: block;
+  box-shadow:
+    0 0 10px rgba(201,169,110,0.7),
+    0 0 24px rgba(201,169,110,0.4);
+  animation: captcha-pulse-strong 1.6s ease-in-out infinite;
 }
-.captcha-unavailable { border: 1.5px solid rgba(160,150,138,0.45) !important; }
-.captcha-pulse { background: var(--accent); }
-.captcha-pulse-anim { animation: captcha-pulse-ring 2.4s ease-in-out infinite; }
-@keyframes captcha-pulse-ring {
-  0%,100% { box-shadow: 0 0 0 0 rgba(201,169,110,0.5); }
-  60%     { box-shadow: 0 0 0 8px rgba(201,169,110,0); }
+@keyframes captcha-pulse-strong {
+  0%   { box-shadow: 0 0 0 0   rgba(201,169,110,0.85), 0 0 12px rgba(201,169,110,0.5); transform: scale(1); }
+  50%  { box-shadow: 0 0 0 12px rgba(201,169,110,0),   0 0 28px rgba(201,169,110,0.3); transform: scale(1.08); }
+  100% { box-shadow: 0 0 0 0   rgba(201,169,110,0),    0 0 12px rgba(201,169,110,0.5); transform: scale(1); }
 }
+
 .captcha-circle.captcha-selected {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
