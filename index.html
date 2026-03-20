@@ -537,7 +537,7 @@
       });
 
       // Form submit — check honeypot + verified
-      form.addEventListener('submit', function (e) {
+      form.addEventListener('submit', async function (e) {
         e.preventDefault();
         if (form.querySelector('input[name="_hp"]').value) return; // bot
         if (!verified) {
@@ -546,8 +546,33 @@
           return;
         }
         if (!emailInput.validity.valid) { emailInput.reportValidity(); return; }
-        form.style.display = 'none';
-        document.getElementById('wl-success').style.display = 'block';
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Joining...';
+        try {
+          const SUPABASE_URL = 'https://ubokrxsvgcmhbsguifik.supabase.co';
+          const SUPABASE_ANON = 'sb_publishable_64vWhTGOBHzgRGFF6Ce3KQ_FcMxH2WB';
+          const res = await fetch(SUPABASE_URL + '/rest/v1/waitlist', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'apikey': SUPABASE_ANON,
+              'Authorization': 'Bearer ' + SUPABASE_ANON,
+              'Prefer': 'return=minimal'
+            },
+            body: JSON.stringify({ email: emailInput.value.trim().toLowerCase() })
+          });
+          if (res.ok || res.status === 409) {
+            form.style.display = 'none';
+            document.getElementById('wl-success').style.display = 'block';
+          } else {
+            throw new Error('Server error');
+          }
+        } catch (err) {
+          hintEl.textContent = 'Something went wrong. Please try again.';
+          hintEl.style.color = 'rgba(220,100,80,0.85)';
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Join our waitlist';
+        }
       });
     })();
   </script>
