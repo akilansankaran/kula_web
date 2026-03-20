@@ -300,7 +300,7 @@ nav.scrolled {
   position: absolute;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
-  width: 20px; height: 20px;
+  width: 30px; height: 30px;
   border-radius: 50%;
   background: var(--accent);
   box-shadow: 0 0 22px var(--accent-glow-s), 0 0 55px var(--accent-glow);
@@ -372,8 +372,61 @@ nav.scrolled {
   border-top: 1px solid var(--border);
 }
 .problem-inner {
-  max-width: 860px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 80px;
+  align-items: center;
 }
+.problem-clock {
+  position: relative;
+  width: 200px; height: 200px;
+  flex-shrink: 0;
+}
+.pc-ring {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 184px; height: 184px;
+  border-radius: 50%;
+  border: 10px solid rgba(201,169,110,0.28);
+}
+.pc-hands {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0; height: 0;
+}
+.pc-hand-minute, .pc-hand-hour {
+  position: absolute;
+  bottom: 0; left: 0;
+  border-radius: 3px 3px 1px 1px;
+  transform-origin: 50% 100%;
+}
+.pc-hand-minute {
+  width: 1.5px; height: 68px;
+  margin-left: -0.75px;
+  background: linear-gradient(to top, rgba(201,169,110,0.90) 0%, rgba(201,169,110,0.25) 100%);
+  animation: tick-minute 60s steps(60, end) infinite;
+  animation-delay: -14s;
+}
+.pc-hand-hour {
+  width: 3px; height: 44px;
+  margin-left: -1.5px;
+  background: linear-gradient(to top, rgba(201,169,110,0.62) 0%, rgba(201,169,110,0.12) 100%);
+  animation: tick-hour 720s steps(60, end) infinite;
+  animation-delay: -84s;
+}
+.pc-core {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 16px var(--accent-glow-s), 0 0 36px var(--accent-glow);
+  z-index: 3;
+}
+.problem-text { max-width: 560px; }
 .problem-lead {
   font-family: var(--font-display);
   font-size: clamp(2.4rem, 4.5vw, 4rem);
@@ -934,38 +987,46 @@ nav.scrolled {
 }
 .waitlist-visual { display: flex; justify-content: center; }
 
-/* Waitlist scene: same style as hero */
+/* Waitlist: orbiting trio */
 .wl-scene {
   position: relative;
-  width: 220px; height: 220px;
-  display: flex; align-items: center; justify-content: center;
+  width: 200px; height: 200px;
 }
-.wl-outer-ring {
+.trio-arm {
   position: absolute;
-  width: 180px; height: 180px;
   top: 50%; left: 50%;
-  transform: translate(-50%,-50%);
+  width: 0; height: 0;
+  animation: trio-orbit 26s linear infinite;
+}
+.trio-arm-b { animation-delay: -8.67s; }
+.trio-arm-c { animation-delay: -17.33s; }
+.trio-dot {
+  position: absolute;
+  width: 28px; height: 28px;
   border-radius: 50%;
-  border: 1px solid rgba(201,169,110,0.3);
+  transform: translate(-50%, calc(-50% - 68px));
 }
-.wl-fill {
-  position: absolute;
-  width: 174px; height: 174px;
-  top: 50%; left: 50%;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(201,169,110,0.22) 0%, rgba(201,169,110,0.05) 100%);
-  animation: fill-flash 5s ease-in-out infinite;
-  animation-delay: 1.5s;
+.trio-filled {
+  background: var(--accent);
+  box-shadow: 0 0 14px var(--accent-glow-s), 0 0 30px var(--accent-glow);
 }
-.wl-core {
+.trio-empty {
+  border: 1.5px solid rgba(201,169,110,0.45);
+}
+.trio-available {
+  border: 1.5px solid var(--accent);
+}
+.trio-inner-dot {
   position: absolute;
   top: 50%; left: 50%;
-  width: 14px; height: 14px;
+  transform: translate(-50%, -50%);
+  width: 9px; height: 9px;
   border-radius: 50%;
   background: var(--accent);
-  box-shadow: 0 0 18px var(--accent-glow-s), 0 0 40px var(--accent-glow);
-  animation: core-breathe 3s ease-in-out infinite;
-  z-index: 1;
+}
+@keyframes trio-orbit {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }
 
 .waitlist-text h2 {
