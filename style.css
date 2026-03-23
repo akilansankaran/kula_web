@@ -1300,4 +1300,8 @@ footer {
   .wl-input-group { flex-direction: column; border-radius: 20px; }
   .wl-input-group button { border-radius: 16px; margin: 0 5px 5px; }
   .for-inner h2 { font-size: 1.8rem; }
+  .problem-inner { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+  .problem-clock { margin: 0 auto; }
+  .problem-text { max-width: 100%; }
+  .problem-lead { font-size: 2rem; }
 }
